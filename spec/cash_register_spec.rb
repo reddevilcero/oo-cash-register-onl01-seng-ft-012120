@@ -81,6 +81,13 @@ describe 'CashRegister' do
       cash_register.void_last_transaction
       expect(cash_register.total).to eq(0.99)
     end
+    
+    it 'subtracts the last transaction from items' do
+      cash_register.add_item("apple", 0.99)
+      cash_register.add_item("tomato", 1.76, 3)
+      cash_register.void_last_transaction
+      expect(cash_register.items).to eq(["apple"])
+    end
 
     it 'subtracts the last transaction from items' do
       cash_register.add_item("apple", 0.99)
